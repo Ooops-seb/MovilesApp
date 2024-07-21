@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_moviles/view/agendar.dart';
+import 'package:proyecto_moviles/view/horarios.dart';
+import 'package:proyecto_moviles/view/laboratorios.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,15 +10,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 223, 27, 144)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'GRUPO #3'),
+      routes: {
+        '/laboratorios': (context) => Laboratorios(),
+        '/horarios': (context) => Horarios(),
+        '/agendar': (context) => Agendar(),
+      },
     );
   }
 }
@@ -30,11 +40,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  static const List<Widget> _content2 = [
+    Laboratorios(), // pagina de inicio
+  ];
 
-  void _incrementCounter() {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
     setState(() {
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
@@ -46,23 +60,52 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: _content2[_selectedIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.smartphone), label: 'API')
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 37, 17, 188),
+        onTap: _onItemTapped,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            DrawerHeader(
+              decoration:
+                  BoxDecoration(color: Color.fromARGB(255, 140, 128, 235)),
+              child: Text(
+                'Menu de Opciones',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Laboratorios'),
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              },
             ),
+            ListTile(
+              leading: Icon(Icons.stay_current_landscape),
+              title: Text('API'),
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 1;
+                });
+              },
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
