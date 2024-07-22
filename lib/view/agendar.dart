@@ -20,7 +20,7 @@ class _AgendarState extends State<Agendar> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           '\nAgendar Laboratorio',
           style: TextStyle(
             color: Colors.black,

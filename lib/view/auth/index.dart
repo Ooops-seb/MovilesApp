@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:proyecto_moviles/view/index.dart';
 
@@ -16,23 +14,23 @@ class _AuthIndexState extends State<AuthIndex> {
     return Scaffold(
         body: Center(
             child: Padding(
-      padding: EdgeInsets.only(top: 60, bottom: 20),
+      padding: const EdgeInsets.only(top: 60, bottom: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image(
+          const Image(
             image: AssetImage('assets/images/logo.png'),
             width: 150,
           ),
-          Column(
+          const Column(
             children: [
-              const Text(
+              Text(
                   style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                   'Inicio de Sesión'),
-              const Text(
+              Text(
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.grey),
                   'Ingresa con tu correo institucional'),
             ],
@@ -40,20 +38,20 @@ class _AuthIndexState extends State<AuthIndex> {
           FilledButton(
               onPressed: (() {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => IndexPage()));
+                    MaterialPageRoute(builder: (context) => const IndexPage()));
               }),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Image(
+                    Image(
                       image: AssetImage('assets/icons/google.png'),
                       width: 20,
                     ),
                     Padding(padding: EdgeInsets.all(6)),
-                    const Text('Iniciar Sesión')
+                    Text('Iniciar Sesión')
                   ],
                 ),
               )),

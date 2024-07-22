@@ -16,13 +16,13 @@ class _LaboratoriosState extends State<Laboratorios> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircleAvatar(
+            const CircleAvatar(
               radius: 50,
               backgroundImage:
-                  AssetImage('assets/images/user.jpg'),
+                AssetImage('assets/images/user.jpg'),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'USUARIO',
               style: TextStyle(
                 fontSize: 20,
@@ -30,8 +30,8 @@ class _LaboratoriosState extends State<Laboratorios> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               'Laboratorios SW',
               style: TextStyle(
                 fontSize: 24,
@@ -39,16 +39,16 @@ class _LaboratoriosState extends State<Laboratorios> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/horarios');
               },
-              child: Text(
+              child: const Text(
                 'VER HORARIOS',
                 style: TextStyle(
                   fontSize: 18,
@@ -56,16 +56,16 @@ class _LaboratoriosState extends State<Laboratorios> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/agendar');
               },
-              child: Text(
+              child: const Text(
                 'AGENDAR LAB',
                 style: TextStyle(
                   fontSize: 18,
@@ -73,14 +73,14 @@ class _LaboratoriosState extends State<Laboratorios> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.purple,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {},
-              child: Text(
+              child:const Text(
                 '     SCAN QR     ',
                 style: TextStyle(
                   fontSize: 18,
