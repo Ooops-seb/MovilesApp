@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class Laboratorios extends StatefulWidget {
   const Laboratorios({super.key});
 
@@ -19,7 +20,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             CircleAvatar(
               radius: 50,
               backgroundImage:
-                  AssetImage('assets/images/user.jpg'), // add your image path
+                  AssetImage('assets/images/user.jpg'),
             ),
             SizedBox(height: 10),
             Text(
@@ -42,7 +43,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             SizedBox(height: 30),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // background color
+                backgroundColor: Colors.blue,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
@@ -59,7 +60,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // background color
+                backgroundColor: Colors.green,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
@@ -76,7 +77,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple, // background color
+                backgroundColor: Colors.purple,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {},
@@ -90,7 +91,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
