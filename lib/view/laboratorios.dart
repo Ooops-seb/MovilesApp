@@ -12,7 +12,6 @@ class _LaboratoriosState extends State<Laboratorios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

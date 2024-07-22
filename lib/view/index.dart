@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_moviles/view/auth/config.dart';
+import 'package:proyecto_moviles/view/auth/settings.dart';
 import 'package:proyecto_moviles/view/laboratorios.dart';
 
 class IndexPage extends StatefulWidget {
@@ -10,7 +10,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  static const List<Widget> _menuContent = [Laboratorios(), Configuration()];
+  static const List<Widget> _menuContent = [Laboratorios(), Settings()];
 
   int _selectedIndex = 0;
 
