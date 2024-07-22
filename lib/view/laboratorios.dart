@@ -79,8 +79,10 @@ class _LaboratoriosState extends State<Laboratorios> {
                 backgroundColor: Colors.purple,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
-              onPressed: () {},
-              child:const Text(
+              onPressed: () {
+                Navigator.pushNamed(context, '/scanner');
+              },
+              child: Text(
                 '     SCAN QR     ',
                 style: TextStyle(
                   fontSize: 18,
