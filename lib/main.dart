@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_moviles/view/agendar.dart';
 import 'package:proyecto_moviles/view/horarios.dart';
 import 'package:proyecto_moviles/view/laboratorios.dart';
+import 'package:proyecto_moviles/view/scanner.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/laboratorios': (context) => Laboratorios(),
         '/horarios': (context) => Horarios(),
         '/agendar': (context) => Agendar(),
+        '/scanner': (context) => scanner(),
       },
     );
   }
