@@ -17,10 +17,10 @@ class _AgendarState extends State<Agendar> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.red),
           onPressed: () {
-            Navigator.pushNamed(context, '/laboratorios');
+            Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           '\nAgendar Laboratorio',
           style: TextStyle(
             color: Colors.black,

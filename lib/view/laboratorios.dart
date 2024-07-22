@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class Laboratorios extends StatefulWidget {
   const Laboratorios({super.key});
 
@@ -11,18 +12,17 @@ class _LaboratoriosState extends State<Laboratorios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircleAvatar(
+            const CircleAvatar(
               radius: 50,
               backgroundImage:
-                  AssetImage('assets/images/user.jpg'), // add your image path
+                AssetImage('assets/images/user.jpg'),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'USUARIO',
               style: TextStyle(
                 fontSize: 20,
@@ -30,8 +30,8 @@ class _LaboratoriosState extends State<Laboratorios> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               'Laboratorios SW',
               style: TextStyle(
                 fontSize: 24,
@@ -39,16 +39,16 @@ class _LaboratoriosState extends State<Laboratorios> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // background color
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/horarios');
               },
-              child: Text(
+              child: const Text(
                 'VER HORARIOS',
                 style: TextStyle(
                   fontSize: 18,
@@ -56,16 +56,16 @@ class _LaboratoriosState extends State<Laboratorios> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // background color
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/agendar');
               },
-              child: Text(
+              child: const Text(
                 'AGENDAR LAB',
                 style: TextStyle(
                   fontSize: 18,
@@ -73,11 +73,11 @@ class _LaboratoriosState extends State<Laboratorios> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple, // background color
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                backgroundColor: Colors.purple,
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/scanner');
@@ -92,7 +92,7 @@ class _LaboratoriosState extends State<Laboratorios> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }

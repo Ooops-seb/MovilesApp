@@ -17,7 +17,7 @@ class _HorariosState extends State<Horarios> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.red),
           onPressed: () {
-            Navigator.pushNamed(context, '/laboratorios');
+            Navigator.pop(context);
           },
         ),
         title: Text(
