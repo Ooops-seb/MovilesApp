@@ -45,9 +45,9 @@ class _scannerState extends State<scanner> {
       ),
       body: Column(
         children: <Widget>[
-          Center(
+          const Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
                 'Scanner',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -67,9 +67,8 @@ class _scannerState extends State<scanner> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'INFORMACION LABORATORIO',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),

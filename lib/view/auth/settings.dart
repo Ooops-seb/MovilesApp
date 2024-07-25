@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_moviles/providers/auth_provider.dart';
 import 'package:proyecto_moviles/view/auth/config.dart';
 import 'package:proyecto_moviles/view/auth/profile.dart';
 
@@ -10,9 +13,20 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context);
+    return FutureBuilder<User?>(
+      future: Future.delayed(Duration.zero, () => authyProvider.getUser()), 
+      builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return const Center(
+            child: SizedBox.square(
+                dimension: 50.0, child: CircularProgressIndicator()),
+          );
+        } else if (snapshot.hasData) {
+          return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Ajustes',
@@ -32,22 +46,27 @@ class _SettingsState extends State<Settings> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            const CircleAvatar(
-              radius: 40,
-              backgroundImage:
-                  AssetImage('assets/images/logo.png'), // foto de perfil
-            ),
+            snapshot.data?.photoURL != null
+                      ? CircleAvatar(
+                          radius: 50,
+                          backgroundImage:
+                              NetworkImage(snapshot.data?.photoURL! ?? ''),
+                        )
+                      : const CircleAvatar(
+                          radius: 50,
+                          backgroundImage: AssetImage('assets/images/user.jpg'),
+                        ),
             const SizedBox(height: 10),
-            const Text(
-              'Nombre Apellido',
-              style: TextStyle(
+            Text(
+              snapshot.data?.displayName ?? 'Nombre Apellido',
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
-              'email@domain.com',
-              style: TextStyle(
+            Text(
+              snapshot.data?.email ??'email@domain.com',
+              style: const TextStyle(
                 color: Colors.grey,
               ),
             ),
@@ -74,6 +93,11 @@ class _SettingsState extends State<Settings> {
           ],
         ),
       ),
+    );
+        } else {
+          return const Text('Conexion perdida');
+        }
+      }
     );
   }
 }

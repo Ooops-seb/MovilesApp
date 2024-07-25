@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_moviles/view/auth/index.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_moviles/providers/auth_provider.dart';
 
 class Configuration extends StatefulWidget {
   const Configuration({super.key});
@@ -76,6 +77,7 @@ class _ConfigurationState extends State<Configuration> {
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
+    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context, listen: false);
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -92,9 +94,8 @@ class _ConfigurationState extends State<Configuration> {
             ),
             TextButton(
               child: const Text('Si'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthIndex()));
+              onPressed: () async {
+                await authyProvider.signOut();
               },
             ),
           ],
