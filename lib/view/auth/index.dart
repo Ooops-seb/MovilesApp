@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_moviles/providers/auth_provider.dart';
 import 'package:proyecto_moviles/view/index.dart';
 
 class AuthIndex extends StatefulWidget {
@@ -9,8 +11,12 @@ class AuthIndex extends StatefulWidget {
 }
 
 class _AuthIndexState extends State<AuthIndex> {
+
   @override
   Widget build(BuildContext context) {
+
+    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context);
+
     return Scaffold(
         body: Center(
             child: Padding(
@@ -36,7 +42,8 @@ class _AuthIndexState extends State<AuthIndex> {
             ],
           ),
           FilledButton(
-              onPressed: (() {
+              onPressed: (() async {
+                authyProvider.signIn();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const IndexPage()));
               }),
