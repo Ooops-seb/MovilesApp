@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_moviles/providers/auth_provider.dart';
-import 'package:proyecto_moviles/view/auth/config.dart';
-import 'package:proyecto_moviles/view/auth/profile.dart';
+import 'package:proyecto_moviles/providers/UserProvider.dart';
+import 'package:proyecto_moviles/views/auth/config.dart';
+import 'package:proyecto_moviles/views/auth/profile.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -16,17 +15,8 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context);
-    return FutureBuilder<User?>(
-      future: Future.delayed(Duration.zero, () => authyProvider.getUser()), 
-      builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting){
-          return const Center(
-            child: SizedBox.square(
-                dimension: 50.0, child: CircularProgressIndicator()),
-          );
-        } else if (snapshot.hasData) {
-          return Scaffold(
+    final UserProvider userProvider = Provider.of<UserProvider>(context);
+    return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Ajustes',
@@ -46,26 +36,21 @@ class _SettingsState extends State<Settings> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            snapshot.data?.photoURL != null
-                      ? CircleAvatar(
+            CircleAvatar(
                           radius: 50,
                           backgroundImage:
-                              NetworkImage(snapshot.data?.photoURL! ?? ''),
-                        )
-                      : const CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage('assets/images/user.jpg'),
+                              NetworkImage(userProvider.imageUrl ?? ''),
                         ),
             const SizedBox(height: 10),
             Text(
-              snapshot.data?.displayName ?? 'Nombre Apellido',
+              userProvider.fullName ?? 'Nombre Apellido',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              snapshot.data?.email ??'email@domain.com',
+              userProvider.email ??'email@domain.com',
               style: const TextStyle(
                 color: Colors.grey,
               ),
@@ -93,11 +78,6 @@ class _SettingsState extends State<Settings> {
           ],
         ),
       ),
-    );
-        } else {
-          return const Text('Conexion perdida');
-        }
-      }
     );
   }
 }

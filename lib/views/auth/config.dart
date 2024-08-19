@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_moviles/providers/auth_provider.dart';
+import 'package:proyecto_moviles/providers/AuthProvider.dart';
+import 'package:proyecto_moviles/views/auth/index.dart';
 
 class Configuration extends StatefulWidget {
   const Configuration({super.key});
@@ -68,7 +69,10 @@ class _ConfigurationState extends State<Configuration> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
-                      children: [Text('Cerrar Sesión', style: TextStyle(fontWeight: FontWeight.bold))],
+                      children: [
+                        Text('Cerrar Sesión',
+                            style: TextStyle(fontWeight: FontWeight.bold))
+                      ],
                     ),
                   )),
             ],
@@ -77,14 +81,16 @@ class _ConfigurationState extends State<Configuration> {
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
-    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context, listen: false);
+    final AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Atención', style: TextStyle(fontWeight: FontWeight.bold)),
-          content: const Text('¿Estas seguro de cerrar sesión?'),
+          title: const Text('Atención',
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          content: const Text('¿Estás seguro de cerrar sesión?'),
           actions: <Widget>[
             TextButton(
               child: const Text('No'),
@@ -93,9 +99,14 @@ class _ConfigurationState extends State<Configuration> {
               },
             ),
             TextButton(
-              child: const Text('Si'),
+              child: const Text('Sí'),
               onPressed: () async {
-                await authyProvider.signOut();
+                await authProvider.signOut();
+                print('User signed out');
+                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const AuthIndex()),
+                );
               },
             ),
           ],

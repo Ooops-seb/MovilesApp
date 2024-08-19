@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_moviles/view/auth/settings.dart';
-import 'package:proyecto_moviles/view/laboratorios.dart';
+import 'package:proyecto_moviles/views/auth/settings.dart';
+import 'package:proyecto_moviles/views/laboratorios.dart';
 
-class IndexPage extends StatefulWidget {
-  const IndexPage({super.key});
+class IndexPages extends StatefulWidget {
+  const IndexPages({super.key});
 
   @override
-  State<IndexPage> createState() => _IndexPageState();
+  State<IndexPages> createState() => _IndexPagesState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _IndexPagesState extends State<IndexPages> {
   static const List<Widget> _menuContent = [Laboratorios(), Settings()];
 
   int _selectedIndex = 0;
