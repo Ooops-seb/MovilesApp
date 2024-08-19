@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^3.2.0
   google_sign_in: ^6.2.1
   provider: ^6.1.2
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,8 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - android/app/google-services.json
+    - .env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
