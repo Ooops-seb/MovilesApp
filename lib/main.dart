@@ -9,7 +9,7 @@ import 'package:proyecto_moviles/views/laboratorios.dart';
 import 'package:proyecto_moviles/views/scanner.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:proyecto_moviles/services/firebase_options.dart';
+import 'package:proyecto_moviles/utils/firebase_options.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: './.env');

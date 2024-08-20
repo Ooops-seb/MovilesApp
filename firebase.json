@@ -9,7 +9,7 @@
                 }
             },
             "dart": {
-                "lib/services/firebase_options.dart": {
+                "lib/utils/firebase_options.dart": {
                     "projectId": "espe-proyecto-moviles",
                     "configurations": {
                         "android": "1:238125664719:android:5f23507963ccbf52dc2aba"

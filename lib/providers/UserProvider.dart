@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:proyecto_moviles/models/User.dart';
 import 'package:proyecto_moviles/providers/AuthProvider.dart';
+import 'package:proyecto_moviles/services/User.dart';
 
 class UserProvider extends ChangeNotifier {
   final AuthProvider _authProvider;
@@ -62,6 +64,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> loadUserData() async {
     final user = auth.FirebaseAuth.instance.currentUser;
     if (user != null) {
+      _initApiData();
       _imageUrl = user.photoURL;
       _fullName = user.displayName;
       notifyListeners();
@@ -78,6 +81,13 @@ class UserProvider extends ChangeNotifier {
     _createAt = null;
     _updatedAt = null;
     _lastLoginAt = null;
+  }
+
+  void _initApiData() async {
+    final user = auth.FirebaseAuth.instance.currentUser;
+    UserService service = UserService();
+    var _user = await service.getUser('asfsaf252asdxczFDSFD');
+    print('USUARIOS: $_user');
   }
 
   @override

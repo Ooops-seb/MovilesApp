@@ -12,13 +12,10 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, _) {
-        if (authProvider.isAuthenticated == null) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        } else if (authProvider.isAuthenticated == true) {
+        if (authProvider.isAuthenticated == true) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
-            final userProvider = Provider.of<UserProvider>(context, listen: false);
+            final userProvider =
+                Provider.of<UserProvider>(context, listen: false);
             await userProvider.loadUserData();
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const IndexPages()),
@@ -34,4 +31,3 @@ class LoadingScreen extends StatelessWidget {
     );
   }
 }
-

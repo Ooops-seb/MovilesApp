@@ -23,6 +23,11 @@ class _IndexPagesState extends State<IndexPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Proyecto Moviles'),
+        centerTitle: true,
+        
+      ),
       body: _menuContent[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
