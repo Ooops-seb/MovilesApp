@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class scanner extends StatefulWidget {
-  const scanner({super.key});
+class Scanner extends StatefulWidget {
+  const Scanner({super.key});
 
   @override
-  State<scanner> createState() => _scannerState();
+  State<Scanner> createState() => _ScannerState();
 }
 
-class _scannerState extends State<scanner> {
+class _ScannerState extends State<Scanner> {
 
     final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
@@ -34,12 +34,11 @@ class _scannerState extends State<scanner> {
  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.red),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushNamed(context, '/laboratorios');
+            Navigator.pop(context);
           },
         ),
       ),

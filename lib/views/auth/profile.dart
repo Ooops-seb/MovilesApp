@@ -48,10 +48,9 @@ class _ProfileState extends State<Profile> {
       final fullName = userProvider.fullName ?? 'Desconocido';
       final email = userProvider.email ?? 'Desconocido';
       final imageUrl = userProvider.imageUrl ?? '';
-      final role = roleEnumValues[roleEnumFromString[userProvider.role!] ?? 'Desconocido'] ?? 'Desconocido';
+      final role = userProvider.role.toString();
       final createdAt = DateTimeFormat.format(userProvider.createdAt ?? DateTime.now(), format: DateTimeFormats.european);
 
-      // Update controllers with user data
       _nameController.text = fullName;
       _emailController.text = email;
       _roleController.text = role;
@@ -128,7 +127,7 @@ class _ProfileState extends State<Profile> {
                       child: TextField(
                         controller: _createdAtController,
                         enabled: false,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Creado En',
                         ),

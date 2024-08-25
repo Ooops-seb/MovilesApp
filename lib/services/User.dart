@@ -13,11 +13,10 @@ class UserService {
     List<User> result = [];
     try {
       final endPoint = '$_endPoint/${id}';
-      developer.log(endPoint);
       var response = await api.GET(endPoint);
-      developer.log(response.body.toString());
 
       if (response.statusCode == 200) {
+        developer.log('Lectura correcta');
         if (response.body.isEmpty) {
           return result;
         } else {
@@ -31,7 +30,6 @@ class UserService {
         }
       } else {
         developer.log('Error al enviar usuario: ${response.statusCode}');
-        developer.log('Respuesta del servidor: ${response.body}');
         return result;
       }
     } catch (e) {
@@ -45,12 +43,10 @@ class UserService {
       final response = await api.POST(_endPoint, user.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        developer.log('Usuario enviado exitosamente: ${response.body}');
+        developer.log('Usuario enviado exitosamente');
       } else {
-        developer.log('ERROR SEND USER ${user.toJson()}');
-        developer.log('Endopoint ${_endPoint}');
         developer.log('Error al enviar usuario: ${response.statusCode}');
-        developer.log('Respuesta del servidor: ${response.body}');
+        developer.log('Error al enviar usuario: ${response.body}');
       }
     } catch (e) {
       developer.log('Error de conexión: $e');

@@ -5,7 +5,7 @@ import 'package:proyecto_moviles/providers/UserProvider.dart';
 import 'package:proyecto_moviles/views/agendar.dart';
 import 'package:proyecto_moviles/views/auth/loading.dart';
 import 'package:proyecto_moviles/views/horarios.dart';
-import 'package:proyecto_moviles/views/laboratorios.dart';
+import 'package:proyecto_moviles/views/laboratorios/laboratorios.dart';
 import 'package:proyecto_moviles/views/scanner.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,12 +46,6 @@ class MyApp extends StatelessWidget {
           )
         ),
         home: const LoadingScreen(),
-        routes: {
-          '/laboratorios': (context) => const Laboratorios(),
-          '/horarios': (context) => const Horarios(),
-          '/agendar': (context) => const Agendar(),
-          '/scanner': (context) => const scanner(),
-        },
       ),
     );
   }
