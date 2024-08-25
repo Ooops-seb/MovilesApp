@@ -12,7 +12,6 @@ class _HorariosState extends State<Horarios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.red),
@@ -23,7 +22,6 @@ class _HorariosState extends State<Horarios> {
         title: const Text(
           '\nHorarios',
           style: TextStyle(
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),

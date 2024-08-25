@@ -39,9 +39,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Proyecto Móviles',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color.fromARGB(255, 223, 27, 144)),
           useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.green,
+            brightness: Brightness.dark
+          )
         ),
         home: const LoadingScreen(),
         routes: {

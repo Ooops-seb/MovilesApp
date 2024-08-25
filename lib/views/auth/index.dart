@@ -10,10 +10,8 @@ class AuthIndex extends StatefulWidget {
 }
 
 class _AuthIndexState extends State<AuthIndex> {
-
   @override
   Widget build(BuildContext context) {
-
     final AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
@@ -30,13 +28,12 @@ class _AuthIndexState extends State<AuthIndex> {
           const Column(
             children: [
               Text(
-                  style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   'Inicio de Sesión'),
               Text(
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.grey),
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
                   'Ingresa con tu correo institucional'),
             ],
           ),
@@ -62,8 +59,7 @@ class _AuthIndexState extends State<AuthIndex> {
           const Text(
               style: TextStyle(
                   fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey),
+                  fontWeight: FontWeight.w600),
               'Móviles - 16829')
         ],
       ),

@@ -22,8 +22,6 @@ class ApiConsumer {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       _bearerToken = data['access_token'];
-      developer.log('data: $data');
-      developer.log('token: $_bearerToken');
     } else {
       throw Exception('Failed to _authenticate and get bearer token');
     }

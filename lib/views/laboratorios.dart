@@ -27,8 +27,6 @@ class _LaboratoriosState extends State<Laboratorios> {
               Text(
                 'Bienvenido, ${userProvider.fullName}!',
                 style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -36,15 +34,12 @@ class _LaboratoriosState extends State<Laboratorios> {
               const Text(
                 'Laboratorios SW',
                 style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 30),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
@@ -55,14 +50,12 @@ class _LaboratoriosState extends State<Laboratorios> {
                   'Visualizar horarios',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
@@ -73,14 +66,12 @@ class _LaboratoriosState extends State<Laboratorios> {
                   'Agendar Laboratorio',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
                   ),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
@@ -91,7 +82,6 @@ class _LaboratoriosState extends State<Laboratorios> {
                   'Escanear QR',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
                   ),
                 ),
               ),
