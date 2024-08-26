@@ -12,6 +12,7 @@ import 'package:proyecto_moviles/services/Laboratory.dart';
 import 'package:proyecto_moviles/services/Schedule.dart';
 import 'package:proyecto_moviles/services/User.dart';
 import 'package:proyecto_moviles/views/agenda/agendar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Laboratorio extends StatefulWidget {
   final String id;
@@ -48,10 +49,8 @@ class _LaboratorioState extends State<Laboratorio> {
     UserService _userService = UserService();
     ScheduleService _scheduleService = ScheduleService();
 
-    // Obtener la información del laboratorio
     var laboratory = await _laboratoryService.getLaboratory(widget.id);
 
-    // Obtener las reservas
     var bookings = await _bookingService.getBookings();
 
     if (bookings != null) {
@@ -147,13 +146,33 @@ class _LaboratorioState extends State<Laboratorio> {
           'Laboratorio',
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: 'Descargar QR',
+            onPressed: () {
+              if (!isLoading) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Descargando QR...')));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Se estan cargando tus datos...')));
+              }
+            },
+            icon: isLoading ? const FaIcon(FontAwesomeIcons.gears) : const Icon(Icons.qr_code),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => Agendar(userId: widget.id)),
-          );
+          if (!isLoading) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Agendar(userId: widget.id)),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Se estan cargando tus datos...')));
+          }
         },
         child: const Icon(Icons.bookmark_add_outlined),
       ),
