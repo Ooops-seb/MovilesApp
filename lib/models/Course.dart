@@ -6,29 +6,29 @@ Course courseFromJson(String str) => Course.fromJson(json.decode(str));
 String courseToJson(Course data) => json.encode(data.toJson());
 
 class Course {
-  String id;
+  int id;
   String name;
   String userId;
-  String? info;
+  String info;
 
   Course({
     required this.id,
     required this.name,
     required this.userId,
-    this.info,
+    required this.info,
   });
 
   factory Course.fromJson(Map<String, dynamic> json) => Course(
         id: json["id"],
         name: json["name"],
-        userId: json["userId"],
+        userId: json["user_id"],
         info: json["info"],
     );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "userId": userId,
+        "user_id": userId,
         "info": info,
     };
 }

@@ -61,80 +61,96 @@ class _ListaLaboratoriosState extends State<ListaLaboratorios> {
         padding: const EdgeInsets.all(30),
         child: isLoading
             ? const Center(
-          child: LoadingComponent(),
-        )
+                child: LoadingComponent(),
+              )
             : _laboratoryList == null || _laboratoryList!.isEmpty
-            ? const Center(
-          child: Text('No existen datos.'),
-        )
-            : RefreshIndicator(
-          displacement: 20.0,
-          onRefresh: () async {
-            setState(() {
-              isLoading = true;
-              _laboratoryList = null;
-            });
-            await loadLaboratories();
-          },
-          child: ListView(
-            children: _laboratoryList!.map((lab) {
-              return Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              lab.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                ? const Center(
+                    child: Text('No existen datos.'),
+                  )
+                : RefreshIndicator(
+                    displacement: 20.0,
+                    onRefresh: () async {
+                      setState(() {
+                        isLoading = true;
+                        _laboratoryList = null;
+                      });
+                      await loadLaboratories();
+                    },
+                    child: ListView(
+                      children: _laboratoryList!.map((lab) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          lab.name,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          overflow: TextOverflow.visible,
+                                        ),
+                                      ),
+                                      Text(
+                                        'ID: ${lab.id}',
+                                        style: const TextStyle(
+                                            fontSize: 8, fontWeight: FontWeight.w500, color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(),
+                                Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          'Información: ',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          lab.info ?? 'No info',
+                                          style: const TextStyle(fontSize: 12),
+                                          overflow: TextOverflow.visible,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Laboratorio(id: lab.id),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text('Ver Detalles'),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Información: ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(lab.info ?? 'No info'),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    Laboratorio(id: lab.id),
-                              ),
-                            );
-                          },
-                          child: const Text('Ver Detalles'),
-                        ),
-                      ),
-                    ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-        ),
       ),
     );
   }

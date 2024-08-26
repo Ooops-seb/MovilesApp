@@ -26,7 +26,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
               } else {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const IndexPages()),
+                    MaterialPageRoute(
+                      builder: (context) => IndexPage(userId: userProvider.id!),
+                    ),
                   );
                 });
                 return const Scaffold(

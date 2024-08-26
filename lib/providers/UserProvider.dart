@@ -107,4 +107,10 @@ class UserProvider extends ChangeNotifier {
     _updatedAt = null;
     _lastSignIn = null;
   }
+
+  @override
+  void dispose() {
+    _authProvider.removeListener(_updateUser);
+    super.dispose();
+  }
 }

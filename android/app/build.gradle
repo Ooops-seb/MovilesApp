@@ -44,7 +44,7 @@ android {
     defaultConfig {
         applicationId "espe.edu.ec.proyecto_moviles"
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

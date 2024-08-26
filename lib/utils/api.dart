@@ -29,14 +29,18 @@ class ApiConsumer {
 
   Future<http.Response> GET(String endpoint) async {
     await _authenticate();
-    developer.log('$baseUrl$endpoint');
-    return await http.get(
+    final response = await http.get(
       Uri.parse('$baseUrl$endpoint'),
       headers: {
         'Content-Type': 'application/json',
+        'Accept-Charset': 'utf-8',
         'Authorization': 'Bearer $_bearerToken',
       },
     );
+    final decodedBody = utf8.decode(response.bodyBytes);
+
+    return http.Response(decodedBody, response.statusCode,
+        headers: response.headers);
   }
 
   Future<http.Response> POST(String endpoint, Map<String, dynamic> data) async {
@@ -45,6 +49,7 @@ class ApiConsumer {
       Uri.parse('$baseUrl$endpoint'),
       headers: {
         'Content-Type': 'application/json',
+        'Accept-Charset': 'utf-8',
         'Authorization': 'Bearer $_bearerToken',
       },
       body: jsonEncode(data),
@@ -57,6 +62,7 @@ class ApiConsumer {
       Uri.parse('$baseUrl$endpoint'),
       headers: {
         'Content-Type': 'application/json',
+        'Accept-Charset': 'utf-8',
         'Authorization': 'Bearer $_bearerToken',
       },
       body: jsonEncode(data),

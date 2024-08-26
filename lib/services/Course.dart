@@ -1,47 +1,18 @@
 import 'dart:convert';
 import 'package:proyecto_moviles/utils/api.dart';
-import 'package:proyecto_moviles/models/User.dart';
+import 'package:proyecto_moviles/models/Course.dart';
 import 'dart:developer' as developer;
 
-class UserService {
-  UserService();
+class CourseService {
+  CourseService();
 
   final ApiConsumer api = ApiConsumer();
-  final _endPoint = 'auth/users';
+  final _endPoint = 'courses';
 
-  Future<List<User>?> getUser(String? id) async {
-    List<User> result = [];
-    try {
-      final endPoint = '$_endPoint/${id}';
-      var response = await api.GET(endPoint);
-
-      if (response.statusCode == 200) {
-        if (response.body.isEmpty) {
-          return result;
-        } else {
-          try {
-            Map<String, dynamic> ListBody = jsonDecode(response.body);
-            var user = User.fromJson(ListBody);
-            result.add(user);
-          } catch (e) {
-            return result;
-          }
-        }
-      } else {
-        developer.log('Error al enviar usuario: ${response.statusCode}');
-        return result;
-      }
-    } catch (e) {
-      developer.log('Error de conexión: $e');
-      return null;
-    }
-  }
-
-  Future<User?> getUserById(String? id) async {
+  Future<Course?> getCourse(String? id) async {
     try {
       final endPoint = '$_endPoint/$id';
       var response = await api.GET(endPoint);
-
 
       if (response.statusCode == 200) {
         if (response.body.isEmpty) {
@@ -50,8 +21,8 @@ class UserService {
         } else {
           try {
             Map<String, dynamic> responseBody = jsonDecode(response.body);
-            var user = User.fromJson(responseBody);
-            return user;
+            var course = Course.fromJson(responseBody);
+            return course;
           } catch (e) {
             developer.log('Error al decodificar JSON: $e');
             return null;
@@ -67,10 +38,10 @@ class UserService {
     }
   }
 
-  Future<List<User>?> getUsers() async {
-    List<User> result = [];
+  Future<List<Course>?> getUserCourses(String id) async {
+    List<Course> result = [];
     try {
-      final endPoint = '$_endPoint';
+      final endPoint = '$_endPoint/by_user/$id';
       var response = await api.GET(endPoint);
 
       if (response.statusCode == 200) {
@@ -81,8 +52,8 @@ class UserService {
           try {
             List<dynamic> listBody = jsonDecode(response.body);
             for (var item in listBody) {
-              var user = User.fromJson(item);
-              result.add(user);
+              var course = Course.fromJson(item);
+              result.add(course);
             }
           } catch (e) {
             developer.log('Error al decodificar JSON: $e');
@@ -102,9 +73,44 @@ class UserService {
     return result;
   }
 
-  Future<void> sendUserToApi(User user) async {
+  Future<List<Course>?> getCourses() async {
+    List<Course> result = [];
     try {
-      final response = await api.POST(_endPoint, user.toJson());
+      final endPoint = '$_endPoint';
+      var response = await api.GET(endPoint);
+
+      if (response.statusCode == 200) {
+        if (response.body.isEmpty) {
+          developer.log('El cuerpo de la respuesta está vacío.');
+          return result;
+        } else {
+          try {
+            List<dynamic> listBody = jsonDecode(response.body);
+            for (var item in listBody) {
+              var course = Course.fromJson(item);
+              result.add(course);
+            }
+          } catch (e) {
+            developer.log('Error al decodificar JSON: $e');
+            return result;
+          }
+        }
+      } else {
+        developer.log('Error al enviar usuario: ${response.statusCode}');
+        developer.log('Cuerpo de la respuesta: ${response.body}');
+        return result;
+      }
+    } catch (e) {
+      developer.log('Error de conexión: $e');
+      return null;
+    }
+
+    return result;
+  }
+
+  Future<void> sendCourseToApi(Course course) async {
+    try {
+      final response = await api.POST(_endPoint, course.toJson());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         developer.log('Usuario enviado exitosamente');

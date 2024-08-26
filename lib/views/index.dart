@@ -5,33 +5,42 @@ import 'package:proyecto_moviles/components/loading.dart';
 import 'dart:async';
 import 'package:proyecto_moviles/providers/AuthProvider.dart';
 import 'package:proyecto_moviles/providers/UserProvider.dart';
-import 'package:proyecto_moviles/views/agendar.dart';
+import 'package:proyecto_moviles/views/agenda/agendar.dart';
+import 'package:proyecto_moviles/views/agenda/listado.dart';
 import 'package:proyecto_moviles/views/auth/loading.dart';
 import 'package:proyecto_moviles/views/auth/profile.dart';
-import 'package:proyecto_moviles/views/home.dart';
+import 'package:proyecto_moviles/views/cursos/listado.dart';
+import 'package:proyecto_moviles/views/agenda/agenda.dart';
 import 'package:proyecto_moviles/views/horarios.dart';
 import 'package:proyecto_moviles/views/laboratorios/laboratorios.dart';
-import 'dart:developer' as developer;
 
-import 'package:proyecto_moviles/views/scanner.dart';
+import 'package:proyecto_moviles/views/scanner/scanner.dart';
 
-class IndexPages extends StatefulWidget {
-  const IndexPages({super.key});
+class IndexPage extends StatefulWidget {
+  final String userId;
+
+  const IndexPage({required this.userId, super.key});
 
   @override
-  State<IndexPages> createState() => _IndexPagesState();
+  State<IndexPage> createState() => _IndexPageState();
 }
 
-class _IndexPagesState extends State<IndexPages> {
-  static const List<Widget> _userMenuContent = [
-    HomePage(),
-    Profile(), //1
-  ];
-  static const List<Widget> _actionsMenuContent = [
-    Horarios(), //2
-    ListaLaboratorios(), //3
-    Agendar() //4
-  ];
+class _IndexPageState extends State<IndexPage> {
+  List<Widget> get _userMenuContent {
+    return [
+      MiAgenda(userId: widget.userId),
+      Profile(), //1
+    ];
+  }
+
+  List<Widget> get _actionsMenuContent  {
+    return [
+      Horarios(), //2
+      ListaLaboratorios(), //3
+      Agendar(userId: widget.userId), //4
+      ListadoAgenda(), //5
+    ];
+  }
 
   int _selectedIndex = 0;
 
@@ -69,7 +78,6 @@ class _IndexPagesState extends State<IndexPages> {
       if (userProvider.imageUrl == null || userProvider.fullName == null) {
         return const LoadingComponent();
       }
-      developer.log(userProvider.role.toString());
       return Scaffold(
         appBar: AppBar(
           title: const Text('Proyecto Móviles'),
@@ -137,7 +145,7 @@ class _IndexPagesState extends State<IndexPages> {
               ),
             )),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -145,25 +153,18 @@ class _IndexPagesState extends State<IndexPages> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                   ListTile(
-                    leading: const Icon(Icons.book_outlined),
-                    title: const Text('Horarios'),
-                    onTap: () {
-                      _onDrawerItemTapped(2, false);
-                    },
-                  ),
-                  ListTile(
                     leading: const Icon(Icons.layers_outlined),
                     title: const Text('Laboratorios'),
                     onTap: () {
                       _onDrawerItemTapped(3, false);
                     },
                   ),
-                  Divider()
+                  const Divider()
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -181,15 +182,15 @@ class _IndexPagesState extends State<IndexPages> {
                     leading: const Icon(Icons.bookmarks_outlined),
                     title: const Text('Ver Reservas'),
                     onTap: () {
-                      _onDrawerItemTapped(4, false);
+                      _onDrawerItemTapped(5, false);
                     },
                   ),
-                  Divider()
+                  const Divider()
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -200,10 +201,15 @@ class _IndexPagesState extends State<IndexPages> {
                     leading: const Icon(Icons.school_outlined),
                     title: const Text('Mis Cursos'),
                     onTap: () {
-                      _onDrawerItemTapped(4, false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ListaCursos(userId: userProvider.id ?? '')),
+                      );
                     },
                   ),
-                  Divider()
+                  const Divider()
                 ],
               ),
             ),
@@ -217,7 +223,7 @@ class _IndexPagesState extends State<IndexPages> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Scanner()),
+              MaterialPageRoute(builder: (context) => const Scanner()),
             );
           },
           child: const Icon(Icons.qr_code_scanner),

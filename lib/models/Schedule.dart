@@ -8,11 +8,11 @@ Schedule scheduleFromJson(String str) => Schedule.fromJson(json.decode(str));
 String scheduleToJson(Schedule data) => json.encode(data.toJson());
 
 class Schedule {
-  int id;
+  int? id;
   List<ScheduleDetail> detail;
 
   Schedule({
-    required this.id,
+    this.id,
     required this.detail,
   });
 
