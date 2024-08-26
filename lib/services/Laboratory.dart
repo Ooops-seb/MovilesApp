@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:proyecto_moviles/utils/api.dart';
 import 'package:proyecto_moviles/models/Laboratory.dart';
 import 'dart:developer' as developer;
@@ -38,8 +39,6 @@ class LaboratoryService {
     }
   }
 
-
-
   Future<List<Laboratory>?> getLaboratories() async {
     List<Laboratory> result = [];
     try {
@@ -74,6 +73,24 @@ class LaboratoryService {
 
     return result;
   }
+
+  Future<Uint8List?> downloadQrCode(String labId) async {
+    try {
+      final endPoint = '$_endPoint/$labId/get_qr';
+      var response = await api.GETdeprecated(endPoint);
+
+      if (response.statusCode == 200 && response.headers['content-type'] == 'image/png') {
+        return response.bodyBytes;
+      } else {
+        developer.log('Error al descargar QR: ${response.statusCode}');
+        return null;
+      }
+    } catch (e) {
+      developer.log('Error de conexión: $e');
+      return null;
+    }
+  }
+
 
   Future<void> sendLaboratoryToApi(Laboratory user) async {
     try {

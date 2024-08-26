@@ -13,7 +13,6 @@ import 'package:proyecto_moviles/views/cursos/listado.dart';
 import 'package:proyecto_moviles/views/agenda/agenda.dart';
 import 'package:proyecto_moviles/views/horarios.dart';
 import 'package:proyecto_moviles/views/laboratorios/laboratorios.dart';
-
 import 'package:proyecto_moviles/views/scanner/scanner.dart';
 
 class IndexPage extends StatefulWidget {
@@ -111,7 +110,7 @@ class _IndexPageState extends State<IndexPage> {
                 Text(
                   'Bienvenido, ${userProvider.fullName}!',
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -119,14 +118,14 @@ class _IndexPageState extends State<IndexPage> {
             )),
             ListTile(
               leading: const Icon(Icons.person),
-              title: const Text('Perfil de usuario'),
+              title: const Text('Perfil de usuario', style: TextStyle(fontSize: 12),),
               onTap: () {
                 _onDrawerItemTapped(1, true);
               },
             ),
             ListTile(
               leading: const Icon(Icons.logout),
-              title: const Text('Cerrar sesión'),
+              title: const Text('Cerrar sesión', style: TextStyle(fontSize: 12),),
               onTap: () {
                 _showMyDialog(context);
               },
@@ -145,16 +144,16 @@ class _IndexPageState extends State<IndexPage> {
               ),
             )),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Ver',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                   ListTile(
                     leading: const Icon(Icons.layers_outlined),
-                    title: const Text('Laboratorios'),
+                    title: const Text('Laboratorios', style: TextStyle(fontSize: 12),),
                     onTap: () {
                       _onDrawerItemTapped(3, false);
                     },
@@ -164,23 +163,23 @@ class _IndexPageState extends State<IndexPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Reservación',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                   ListTile(
                     leading: const Icon(Icons.bookmark_add_outlined),
-                    title: const Text('Crear Reserva'),
+                    title: const Text('Crear Reserva', style: TextStyle(fontSize: 12),),
                     onTap: () {
                       _onDrawerItemTapped(4, false);
                     },
                   ),
                   ListTile(
                     leading: const Icon(Icons.bookmarks_outlined),
-                    title: const Text('Ver Reservas'),
+                    title: const Text('Ver Reservas', style: TextStyle(fontSize: 12),),
                     onTap: () {
                       _onDrawerItemTapped(5, false);
                     },
@@ -190,16 +189,16 @@ class _IndexPageState extends State<IndexPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Cursos',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                   ListTile(
                     leading: const Icon(Icons.school_outlined),
-                    title: const Text('Mis Cursos'),
+                    title: const Text('Mis Cursos', style: TextStyle(fontSize: 12),),
                     onTap: () {
                       Navigator.push(
                         context,
