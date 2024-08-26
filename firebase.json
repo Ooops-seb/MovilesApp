@@ -1,0 +1,21 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "espe-proyecto-moviles",
+                    "appId": "1:238125664719:android:5f23507963ccbf52dc2aba",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/utils/firebase_options.dart": {
+                    "projectId": "espe-proyecto-moviles",
+                    "configurations": {
+                        "android": "1:238125664719:android:5f23507963ccbf52dc2aba"
+                    }
+                }
+            }
+        }
+    }
+}

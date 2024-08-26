@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Agendar extends StatefulWidget {
-  const Agendar({super.key});
+class Horarios extends StatefulWidget {
+  const Horarios({super.key});
 
   @override
-  State<Agendar> createState() => _AgendarState();
+  State<Horarios> createState() => _HorariosState();
 }
 
-class _AgendarState extends State<Agendar> {
+class _HorariosState extends State<Horarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.red),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -23,7 +22,6 @@ class _AgendarState extends State<Agendar> {
         title: const Text(
           '\nAgendar Laboratorio',
           style: TextStyle(
-            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -1,24 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_moviles/providers/auth_provider.dart';
-import 'package:proyecto_moviles/view/agendar.dart';
-import 'package:proyecto_moviles/view/auth/index.dart';
-import 'package:proyecto_moviles/view/horarios.dart';
-import 'package:proyecto_moviles/view/index.dart';
-import 'package:proyecto_moviles/view/laboratorios.dart';
-import 'package:proyecto_moviles/view/scanner.dart';
+import 'package:proyecto_moviles/providers/AuthProvider.dart';
+import 'package:proyecto_moviles/providers/UserProvider.dart';
+import 'package:proyecto_moviles/views/agenda/agendar.dart';
+import 'package:proyecto_moviles/views/auth/loading.dart';
+import 'package:proyecto_moviles/views/horarios.dart';
+import 'package:proyecto_moviles/views/laboratorios/laboratorios.dart';
+import 'package:proyecto_moviles/views/scanner/scanner.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:proyecto_moviles/utils/firebase_options.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: './.env');
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: 'AIzaSyCiYtEFl56iUBSrA1RByLE1OEP19TtZB4E',
-          appId: '1:147565314523:android:0399ad82e9aeca9fa967fe',
-          messagingSenderId: 'proyecto-moviles-espe',
-          projectId: 'proyecto-moviles-espe',
-          storageBucket: 'proyecto-moviles-espe.appspot.com'));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -29,26 +25,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthyProvider())
-      ],
-      child: MaterialApp(
-        title: 'Proyecto Móviles',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color.fromARGB(255, 223, 27, 144)),
-          useMaterial3: true,
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
         ),
-        home: Consumer<AuthyProvider> (
-          builder: (_ , authProvider, __){
-            return authProvider.isAuthenticated ? const IndexPage() : const AuthIndex();
+        ChangeNotifierProxyProvider<AuthProvider, UserProvider>(
+          create: (context) =>
+              UserProvider(Provider.of<AuthProvider>(context, listen: false)),
+          update: (context, authProvider, previousUserProvider) {
+            return UserProvider(authProvider);
           },
         ),
-        routes: {
-          '/laboratorios': (context) => const Laboratorios(),
-          '/horarios': (context) => const Horarios(),
-          '/agendar': (context) => const Agendar(),
-          '/scanner': (context) => const scanner(),
-        },
+      ],
+      child: MaterialApp(
+        title: 'Mi Agenda',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.green,
+            brightness: Brightness.dark
+          )
+        ),
+        home: const LoadingScreen(),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_moviles/providers/auth_provider.dart';
-import 'package:proyecto_moviles/view/index.dart';
+import 'package:proyecto_moviles/providers/AuthProvider.dart';
 
 class AuthIndex extends StatefulWidget {
   const AuthIndex({super.key});
@@ -11,11 +10,9 @@ class AuthIndex extends StatefulWidget {
 }
 
 class _AuthIndexState extends State<AuthIndex> {
-
   @override
   Widget build(BuildContext context) {
-
-    final AuthyProvider authyProvider = Provider.of<AuthyProvider>(context);
+    final AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
         body: Center(
@@ -31,21 +28,18 @@ class _AuthIndexState extends State<AuthIndex> {
           const Column(
             children: [
               Text(
-                  style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   'Inicio de Sesión'),
               Text(
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.grey),
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
                   'Ingresa con tu correo institucional'),
             ],
           ),
           FilledButton(
               onPressed: (() async {
-                authyProvider.signIn();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const IndexPage()));
+                authProvider.signIn();
               }),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
@@ -65,8 +59,7 @@ class _AuthIndexState extends State<AuthIndex> {
           const Text(
               style: TextStyle(
                   fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey),
+                  fontWeight: FontWeight.w600),
               'Móviles - 16829')
         ],
       ),
