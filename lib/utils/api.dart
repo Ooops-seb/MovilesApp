@@ -43,6 +43,18 @@ class ApiConsumer {
         headers: response.headers);
   }
 
+  Future<http.Response> GETdeprecated(String endpoint) async {
+    await _authenticate();
+    final response = await http.get(
+      Uri.parse('$baseUrl$endpoint'),
+      headers: {
+        'Authorization': 'Bearer $_bearerToken',
+      },
+    );
+    return response;
+  }
+
+
   Future<http.Response> POST(String endpoint, Map<String, dynamic> data) async {
     await _authenticate();
     return await http.post(

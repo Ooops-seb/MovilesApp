@@ -13,6 +13,7 @@ import 'package:proyecto_moviles/services/Schedule.dart';
 import 'package:proyecto_moviles/services/User.dart';
 import 'package:proyecto_moviles/views/agenda/agendar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:proyecto_moviles/views/laboratorios/qr.dart';
 
 class Laboratorio extends StatefulWidget {
   final String id;
@@ -151,8 +152,10 @@ class _LaboratorioState extends State<Laboratorio> {
             tooltip: 'Descargar QR',
             onPressed: () {
               if (!isLoading) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Descargando QR...')));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => QrViewer(labId: widget.id)),
+                );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Se estan cargando tus datos...')));

@@ -38,7 +38,7 @@ class _AgendarState extends State<Agendar> {
   Schedule? _selectedSchedule;
   String? _info;
   bool _isLoading = true;
-  bool _isSubmitting = false; // Estado para mostrar el LoadingComponent durante el envío
+  bool _isSubmitting = false;
   List<DayEnum> _selectedDays = [];
   List<HoursEnum> _selectedHours = [];
   List<ScheduleDetail> _scheduleDetails = [];
@@ -174,7 +174,7 @@ class _AgendarState extends State<Agendar> {
       developer.log('Error al crear Schedule o Booking: $e');
     } finally {
       setState(() {
-        _isSubmitting = false; // Ocultar el LoadingComponent
+        _isSubmitting = false;
       });
     }
   }
