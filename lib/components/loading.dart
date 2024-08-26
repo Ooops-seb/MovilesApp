@@ -23,7 +23,7 @@ class _MyWidgetState extends State<LoadingComponent> {
   }
 
   void _startMessageRotation() {
-    Timer.periodic(const Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 10), (timer) {
       if (mounted) {
         setState(() {
           _currentMessageIndex =
