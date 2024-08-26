@@ -25,15 +25,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 return const LoadingComponent();
               } else {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => IndexPage(userId: userProvider.id!),
-                    ),
-                  );
+                  if (mounted) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            IndexPage(userId: userProvider.id!),
+                      ),
+                    );
+                  }
                 });
-                return const Scaffold(
-                  body: LoadingComponent(),
-                );
+                return const LoadingComponent();
               }
             },
           );
