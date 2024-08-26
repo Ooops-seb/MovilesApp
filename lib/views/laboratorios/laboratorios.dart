@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_moviles/components/loading.dart';
 import 'package:proyecto_moviles/models/Laboratory.dart';
 import 'package:proyecto_moviles/services/Laboratory.dart';
-import 'dart:developer' as developer;
 
 import 'package:proyecto_moviles/views/laboratorios/laboratorio.dart';
 
@@ -41,8 +40,6 @@ class _ListaLaboratoriosState extends State<ListaLaboratorios> {
 
   @override
   Widget build(BuildContext context) {
-    developer.log(_laboratoryList.toString());
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
