@@ -74,6 +74,41 @@ class BookingService {
     return result;
   }
 
+  Future<List<Booking>?> getBookingsByLab(String id) async {
+    List<Booking> result = [];
+    try {
+      final endPoint = '$_endPoint/by_lab/$id';
+      var response = await api.GET(endPoint);
+
+      if (response.statusCode == 200) {
+        if (response.body.isEmpty) {
+          developer.log('El cuerpo de la respuesta está vacío.');
+          return result;
+        } else {
+          try {
+            List<dynamic> listBody = jsonDecode(response.body);
+            for (var item in listBody) {
+              var booking = Booking.fromJson(item);
+              result.add(booking);
+            }
+          } catch (e) {
+            developer.log('Error al decodificar JSON: $e');
+            return result;
+          }
+        }
+      } else {
+        developer.log('Error al enviar usuario: ${response.statusCode}');
+        developer.log('Cuerpo de la respuesta: ${response.body}');
+        return result;
+      }
+    } catch (e) {
+      developer.log('Error de conexión: $e');
+      return null;
+    }
+
+    return result;
+  }
+
   Future<Booking?> sendBookingToApi(Booking user) async {
     try {
       final response = await api.POST(_endPoint, user.toJson());
